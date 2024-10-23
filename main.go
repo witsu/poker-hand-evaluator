@@ -3,15 +3,12 @@ package main
 import (
 	"fmt"
 	"poker/cards"
+	"poker/hands"
 )
 
 func main() {
 	deck := cards.NewDeck()
-	hand := make([]cards.Card, 5)
-	for i := 0; i < 5; i++ {
-		hand[i] = deck.Deal()
-	}
-	for _, c := range hand {
-		fmt.Println(c)
-	}
+	hand := hands.Deal(deck)
+
+	fmt.Println(hand)
 }
