@@ -46,6 +46,10 @@ type Card struct {
 	Suit Suit
 }
 
+func NewCard(r, s int) Card {
+	return Card{Rank: Rank(r), Suit: Suit(s)}
+}
+
 func (c Card) String() string {
 	return fmt.Sprintf("'%s of %s'", c.Rank, c.Suit)
 }
