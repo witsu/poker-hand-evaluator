@@ -51,7 +51,8 @@ func (c card) String() string {
 }
 
 type Deck struct {
-	cards []card
+	cards     []card
+	dealIndex int
 }
 
 func NewDeck() *Deck {
@@ -68,13 +69,18 @@ func NewDeck() *Deck {
 	return &Deck{cards: cards}
 }
 
-func (d *Deck) DealHand() []card {
-	return d.cards[:5]
+func (d *Deck) Deal() card {
+	card := d.cards[d.dealIndex]
+	d.dealIndex += 1
+	return card
 }
 
 func main() {
 	deck := NewDeck()
-	hand := deck.DealHand()
+	hand := make([]card, 5)
+	for i := 0; i < 5; i++ {
+		hand[i] = deck.Deal()
+	}
 	for _, c := range hand {
 		fmt.Println(c)
 	}
