@@ -42,12 +42,12 @@ func (r Rank) String() string {
 }
 
 type Card struct {
-	rank Rank
-	suit Suit
+	Rank Rank
+	Suit Suit
 }
 
 func (c Card) String() string {
-	return fmt.Sprintf("'%s of %s'", c.rank, c.suit)
+	return fmt.Sprintf("'%s of %s'", c.Rank, c.Suit)
 }
 
 type Deck struct {
@@ -60,7 +60,7 @@ func NewDeck() *Deck {
 
 	for r := R2; r <= Ace; r++ {
 		for s := Heart; s <= Spade; s++ {
-			cards = append(cards, Card{rank: r, suit: s})
+			cards = append(cards, Card{Rank: r, Suit: s})
 		}
 	}
 

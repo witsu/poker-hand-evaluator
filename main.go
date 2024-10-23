@@ -9,6 +9,6 @@ import (
 func main() {
 	deck := cards.NewDeck()
 	hand := hands.Deal(deck)
-
 	fmt.Println(hand)
+	fmt.Println(hand.Evaluate())
 }
