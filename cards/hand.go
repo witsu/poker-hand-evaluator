@@ -31,7 +31,7 @@ func (h Hand) Evaluate() string {
 		return "Straight Flush"
 	case hasNumberOfSame(rankCounts, 4):
 		return "Four of a Kind"
-	case hasFullHouse(rankCounts):
+	case hasNumberOfSame(rankCounts, 3) && hasNumberOfSame(rankCounts, 2):
 		return "Full House"
 	case isFlush:
 		return "Flush"
@@ -85,19 +85,6 @@ func hasNumberOfSame(counts rankCounts, n int) bool {
 		}
 	}
 	return false
-}
-
-func hasFullHouse(counts rankCounts) bool {
-	hasThree := false
-	hasTwo := false
-	for _, count := range counts {
-		if count == 3 {
-			hasThree = true
-		} else if count == 2 {
-			hasTwo = true
-		}
-	}
-	return hasThree && hasTwo
 }
 
 func hasTwoPair(counts rankCounts) bool {
