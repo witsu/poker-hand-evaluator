@@ -3,12 +3,11 @@ package main
 import (
 	"fmt"
 	"poker/cards"
-	"poker/hands"
 )
 
 func main() {
 	deck := cards.NewDeck()
-	hand := hands.Deal(deck)
+	hand := cards.Deal(deck)
 	fmt.Println(hand)
 	fmt.Println(hand.Evaluate())
 }

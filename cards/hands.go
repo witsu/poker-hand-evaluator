@@ -1,19 +1,18 @@
-package hands
+package cards
 
 import (
 	"fmt"
-	"poker/cards"
 	"slices"
 )
 
-func Deal(deck *cards.Deck) Hand {
+func Deal(deck *Deck) Hand {
 	hand := Hand{
-		cards: make([]cards.Card, 5),
+		cards: make([]Card, 5),
 	}
 	for i := 0; i < 5; i++ {
 		hand.cards[i] = deck.Deal()
 	}
-	slices.SortFunc(hand.cards, func(a, b cards.Card) int {
+	slices.SortFunc(hand.cards, func(a, b Card) int {
 		if a.Rank < b.Rank {
 			return -1
 		}
@@ -22,10 +21,10 @@ func Deal(deck *cards.Deck) Hand {
 	return hand
 }
 
-type rankCounts map[cards.Rank]int
+type rankCounts map[Rank]int
 
 type Hand struct {
-	cards []cards.Card
+	cards []Card
 }
 
 func (h Hand) String() string {
@@ -33,8 +32,8 @@ func (h Hand) String() string {
 }
 
 func (h Hand) Evaluate() string {
-	ranks := make([]cards.Rank, 5)
-	suits := make([]cards.Suit, 5)
+	ranks := make([]Rank, 5)
+	suits := make([]Suit, 5)
 	for i, card := range h.cards {
 		ranks[i] = card.Rank
 		suits[i] = card.Suit
@@ -66,7 +65,7 @@ func (h Hand) Evaluate() string {
 	}
 }
 
-func isFlush(suits []cards.Suit) bool {
+func isFlush(suits []Suit) bool {
 	for i := 1; i < len(suits); i++ {
 		if suits[i] != suits[0] {
 			return false
@@ -75,7 +74,7 @@ func isFlush(suits []cards.Suit) bool {
 	return true
 }
 
-func isStraight(ranks []cards.Rank) bool {
+func isStraight(ranks []Rank) bool {
 	// Check for Ace-low straight (A-2-3-4-5)
 	if ranks[0] == 2 && ranks[1] == 3 && ranks[2] == 4 && ranks[3] == 5 && ranks[4] == 14 {
 		return true
@@ -88,7 +87,7 @@ func isStraight(ranks []cards.Rank) bool {
 	return true
 }
 
-func countRanks(ranks []cards.Rank) rankCounts {
+func countRanks(ranks []Rank) rankCounts {
 	counts := make(rankCounts)
 	for _, rank := range ranks {
 		counts[rank]++
