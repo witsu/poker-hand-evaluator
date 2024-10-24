@@ -15,7 +15,7 @@ func NewDeck() *Deck {
 
 	for r := R2; r <= Ace; r++ {
 		for s := Heart; s <= Spade; s++ {
-			cards = append(cards, Card{Rank: r, Suit: s})
+			cards = append(cards, Card{rank: r, suit: s})
 		}
 	}
 
@@ -32,7 +32,7 @@ func (d *Deck) DealHand() Hand {
 		hand.cards[i] = d.dealCard()
 	}
 	slices.SortFunc(hand.cards, func(a, b Card) int {
-		if a.Rank < b.Rank {
+		if a.rank < b.rank {
 			return -1
 		}
 		return 1

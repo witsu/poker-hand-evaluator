@@ -18,8 +18,8 @@ func (h Hand) Evaluate() string {
 	ranks := make([]Rank, 5)
 	suits := make([]Suit, 5)
 	for i, card := range h.cards {
-		ranks[i] = card.Rank
-		suits[i] = card.Suit
+		ranks[i] = card.rank
+		suits[i] = card.suit
 	}
 
 	isFlush := isFlush(suits)

@@ -40,14 +40,14 @@ func (r Rank) String() string {
 }
 
 type Card struct {
-	Rank Rank
-	Suit Suit
+	rank Rank
+	suit Suit
 }
 
-func NewCard(r, s int) Card {
-	return Card{Rank: Rank(r), Suit: Suit(s)}
+func newCard(r Rank, s Suit) Card {
+	return Card{rank: r, suit: s}
 }
 
 func (c Card) String() string {
-	return fmt.Sprintf("'%s of %s'", c.Rank, c.Suit)
+	return fmt.Sprintf("'%s of %s'", c.rank, c.suit)
 }
