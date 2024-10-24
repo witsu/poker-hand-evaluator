@@ -83,3 +83,11 @@ func Test_Evaluate(t *testing.T) {
 		})
 	}
 }
+
+func Benchmark_Evaluate(b *testing.B) {
+	deck := NewDeck()
+	hand := deck.DealHand()
+	for i := 0; i < b.N; i++ {
+		hand.Evaluate()
+	}
+}
