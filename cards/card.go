@@ -7,14 +7,14 @@ import (
 type Suit int
 
 const (
-	Heart Suit = iota
-	Diamond
+	Hearts Suit = iota
+	Diamonds
 	Clubs
-	Spade
+	Spades
 )
 
 func (s Suit) String() string {
-	return [...]string{"Heart", "Diamond", "Clubs", "Spade"}[s]
+	return [...]string{"Hearts", "Diamonds", "Clubs", "Spades"}[s]
 }
 
 type Rank int

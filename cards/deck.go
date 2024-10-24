@@ -14,7 +14,7 @@ func NewDeck() *Deck {
 	cards := make([]Card, 0, 52)
 
 	for r := R2; r <= Ace; r++ {
-		for s := Heart; s <= Spade; s++ {
+		for s := Hearts; s <= Spades; s++ {
 			cards = append(cards, Card{rank: r, suit: s})
 		}
 	}
