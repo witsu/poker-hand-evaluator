@@ -5,7 +5,7 @@ import (
 	"slices"
 )
 
-func Deal(deck *Deck) Hand {
+func DealHand(deck *Deck) Hand {
 	hand := Hand{
 		cards: make([]Card, 5),
 	}
