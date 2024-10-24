@@ -2,8 +2,6 @@ package cards
 
 import (
 	"fmt"
-
-	"math/rand"
 )
 
 type Suit int
@@ -52,29 +50,4 @@ func NewCard(r, s int) Card {
 
 func (c Card) String() string {
 	return fmt.Sprintf("'%s of %s'", c.Rank, c.Suit)
-}
-
-type Deck struct {
-	cards     []Card
-	dealIndex int
-}
-
-func NewDeck() *Deck {
-	cards := make([]Card, 0, 52)
-
-	for r := R2; r <= Ace; r++ {
-		for s := Heart; s <= Spade; s++ {
-			cards = append(cards, Card{Rank: r, Suit: s})
-		}
-	}
-
-	rand.Shuffle(len(cards), func(i, j int) { cards[i], cards[j] = cards[j], cards[i] })
-
-	return &Deck{cards: cards}
-}
-
-func (d *Deck) Deal() Card {
-	card := d.cards[d.dealIndex]
-	d.dealIndex += 1
-	return card
 }

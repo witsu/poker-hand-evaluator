@@ -7,7 +7,7 @@ import (
 
 func main() {
 	deck := cards.NewDeck()
-	hand := cards.DealHand(deck)
+	hand := deck.DealHand()
 	fmt.Println(hand)
 	fmt.Println(hand.Evaluate())
 }

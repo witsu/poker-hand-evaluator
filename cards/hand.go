@@ -2,24 +2,7 @@ package cards
 
 import (
 	"fmt"
-	"slices"
 )
-
-func DealHand(deck *Deck) Hand {
-	hand := Hand{
-		cards: make([]Card, 5),
-	}
-	for i := 0; i < 5; i++ {
-		hand.cards[i] = deck.Deal()
-	}
-	slices.SortFunc(hand.cards, func(a, b Card) int {
-		if a.Rank < b.Rank {
-			return -1
-		}
-		return 1
-	})
-	return hand
-}
 
 type rankCounts map[Rank]int
 
