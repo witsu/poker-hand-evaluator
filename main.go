@@ -15,16 +15,26 @@ type Card struct {
 	suit uint16
 }
 
+// Evaluate poker 5 card hand using bits to represent ranks and suits
+// Algorithm from https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math
 func evaluateHand(hand []Card) string {
-	var rankBits, suitBits uint16
-	var rankCount uint64
-	var offset uint64
+	// rankBits stores info which rank was used by using bit per rank [A K Q J 10 9 8 7 6 5 4 3 2 _ _]
+	// example hand [K, K, Q, J, 10] is stored as [011110000000000]
+	var rankBits uint16
+
+	//  suitBits stores info which suit was used
+	// example [Hearts, Hearts, Diamond, Diamond, Diamond] [0011]
+	var suitBits uint16
+
+	// rankCount stores groups of 4 bits per rank to count ranks
+	// example hand [K, K, Q, J, 10] is stored as [0000 0011 0001 0001 0001 0000 0000...0000]
+	var rankCount, rankCountOffset uint64
 
 	for _, card := range hand {
 		rankBits |= 1 << card.rank
 		suitBits |= 1 << card.suit
-		offset = 1 << (card.rank * 4)
-		rankCount += offset * ((rankCount / offset & 15) + 1)
+		rankCountOffset = 1 << (card.rank * 4)
+		rankCount += rankCountOffset * ((rankCount / rankCountOffset & 15) + 1)
 	}
 
 	isFlush := bits.OnesCount16(suitBits) == 1
