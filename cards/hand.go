@@ -10,6 +10,10 @@ type Hand struct {
 	cards []Card
 }
 
+func (h Hand) Cards() []Card {
+	return h.cards
+}
+
 func (h Hand) String() string {
 	return fmt.Sprintf("%v", h.cards)
 }

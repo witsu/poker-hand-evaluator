@@ -48,6 +48,14 @@ func newCard(r Rank, s Suit) Card {
 	return Card{rank: r, suit: s}
 }
 
+func (c Card) Rank() Rank {
+	return c.rank
+}
+
+func (c Card) Suit() Suit {
+	return c.suit
+}
+
 func (c Card) String() string {
 	return fmt.Sprintf("'%s of %s'", c.rank, c.suit)
 }

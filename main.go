@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/bits"
+	"poker/cards"
 )
 
 const (
@@ -64,14 +65,13 @@ func evaluateHand(hand []Card) string {
 }
 
 func main() {
-	hand := []Card{
-		{rank: 5, suit: 0},
-		{rank: 5, suit: 1},
-		{rank: 5, suit: 2},
-		{rank: 7, suit: 1},
-		{rank: 9, suit: 0},
-	}
+	deck := cards.NewDeck()
+	handNaive := deck.DealHand()
+	fmt.Println("Naive hand evaluation:", handNaive.Evaluate())
 
-	result := evaluateHand(hand)
-	fmt.Println("Hand evaluation:", result)
+	handBit := make([]Card, 5)
+	for i, c := range handNaive.Cards() {
+		handBit[i] = Card{rank: uint16(c.Rank()), suit: uint16(c.Suit())}
+	}
+	fmt.Println("Bit hand evaluation:", evaluateHand(handBit))
 }
